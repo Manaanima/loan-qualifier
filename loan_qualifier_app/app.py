@@ -6,6 +6,7 @@ This is a command line application to match applicants with qualifying loans.
 Example:
     $ python app.py
 """
+
 import sys
 import fire
 import questionary
@@ -17,7 +18,7 @@ from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
     calculate_loan_to_value_ratio,
 )
-
+"""These are modules that filter data to narrow down the list of loans returned to just those that qualify"""
 from qualifier.filters.max_loan_size import filter_max_loan_size
 from qualifier.filters.credit_score import filter_credit_score
 from qualifier.filters.debt_to_income import filter_debt_to_income
@@ -62,7 +63,7 @@ def get_applicant_info():
 
 
 def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_value):
-    """Determine which loans the user qualifies for.
+    """Determines which loans the user qualifies for.
 
     Loan qualification criteria is based on:
         - Credit Score
@@ -101,15 +102,41 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
 
     return bank_data_filtered
 
+def save_csv(qualifying_loans):
+    """ Function that saves the qualifying loans to a CSV file
+    
+    Args:
+        qualifying_loans (list of lists): The qualifying bank loans.
+    """
+    import csv
+    from pathlib import Path
+    csvpath = Path("loan_qualifier_app/data/daily_rate_sheet.csv")
+    
+    header = ["Lender","Max Loan Amount","Max LTV","Max DTI","Min Credit Score","Interest Rate"]
+
+    with open(csvpath, "w") as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter=',')
+        csvwriter.writerow(header)
+        csvwriter.writerows(qualifying_loans)
 
 def save_qualifying_loans(qualifying_loans):
-    """Saves the qualifying loans to a CSV file.
+    """Prompt dialog to save the qualifying loans to a CSV file.
 
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
     """
-    # @TODO: Complete the usability dialog for savings the CSV Files.
-    # YOUR CODE HERE!
+    import questionary
+    # The usability dialog for saving the CSV files.
+    
+    if __name__ == "__main__":
+        confirmation = questionary.confirm("Would you like to save your qualifying loans?").ask()
+        if confirmation:
+            save_csv(qualifying_loans)
+            print(f"Your list of {len(qualifying_loans)} loans have been saved. Have a wonderful day!")
+        else:
+            print("Have a wonderful day!")
+
+
 
 
 def run():
@@ -125,7 +152,7 @@ def run():
     qualifying_loans = find_qualifying_loans(
         bank_data, credit_score, debt, income, loan_amount, home_value
     )
-
+    """Secondary function for saving the qualifying loans to a list"""
     # Save qualifying loans
     save_qualifying_loans(qualifying_loans)
 
