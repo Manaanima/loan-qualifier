@@ -110,11 +110,10 @@ def save_csv(qualifying_loans):
     """
     import csv
     from pathlib import Path
-    csvpath = Path("loan_qualifier_app/data/daily_rate_sheet.csv")
     
     header = ["Lender","Max Loan Amount","Max LTV","Max DTI","Min Credit Score","Interest Rate"]
 
-    with open(csvpath, "w") as csvfile:
+    with open('qualifying_loans.csv', "w") as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',')
         csvwriter.writerow(header)
         csvwriter.writerows(qualifying_loans)
@@ -134,7 +133,7 @@ def save_qualifying_loans(qualifying_loans):
             save_csv(qualifying_loans)
             print(f"Your list of {len(qualifying_loans)} loans have been saved. Have a wonderful day!")
         else:
-            print("Have a wonderful day!")
+            print("Your loan calculation is now complete. Have a wonderful day!")
 
 
 
