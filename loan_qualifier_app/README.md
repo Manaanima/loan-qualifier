@@ -1,16 +1,23 @@
-# Project Title
+# Loan Qualifyer App
 
-Just after the title, introduce your project by describing attractively what the project is about and what is the main problem that inspires you to create this project or what is the main contribution for the potential user of your project.
+Crunching the numbers to find the best mortgage loan possible can be time-consuming, but this Loan Qualifyer application makes this steps first towards getting your dream home an easy one.
+By calculating both your debt-to-income ratio (DTI) and loan-to-value ratio (LTV) this Loan Qualifyer application curates a selection of qualifying loans for the user from a lender CSV
 
 ---
 
 ## Technologies
 
-Describe the technologies required to use your project such as programming languages, libraries, frameworks, and operating systems. Be sure to include the specific versions of any critical dependencies that you have used in the stable version of your project.
+This Python based application leverages both Questionary and Fire to generate a CLI to receive user input and perform the necessary calculations.
 
 ---
 
 ## Installation Guide
+
+To successfully run this application you must first download and install [Questionary](https://questionary.readthedocs.io/en/stable/index.html), and [Fire](https://google.github.io/python-fire/guide/). 
+
+
+This can be done by using the package manager by running "pip install fire" and "pip install questionary". Then download all of the files associated from the repository. 
+
 
 In this section, you should include detailed installation notes containing code blocks and screenshots.
 
@@ -18,16 +25,17 @@ In this section, you should include detailed installation notes containing code 
 
 ## Usage
 
-This section should include screenshots, code blocks, or animations explaining how to use your project.
+With all of the steps in the installation guide in place run the following Bash command: 'python app.py.' Then follow the prompts provided to input your data have app.py perform the calculations necessary to determine your qualifying loans.
+
+You're also able to save the list results of results to a CSV file.
 
 ---
-
 ## Contributors
 
-In this section, list all the people who contribute to this project. You might want recruiters or potential collaborators to reach you, so include your contact email and, optionally, your LinkedIn or Twitter profile.
+Mustafah Greene
 
 ---
-
 ## License
 
-When you share a project on a repository, especially a public one, it's important to choose the right license to specify what others can and can't with your source code and files. Use this section to include the license you want to use.
+[Questionary](https://github.com/tmbo/questionary/blob/master/LICENSE)
+[Fire](https://github.com/google/python-fire/blob/master/LICENSE)
